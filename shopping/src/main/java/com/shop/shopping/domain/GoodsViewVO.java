@@ -2,20 +2,7 @@ package com.shop.shopping.domain;
 
 import java.util.Date;
 
-public class GoodsVo {
-/*
- * create table tbl_goods (
-    gdsNum       number          not null,
-    gdsName      varchar2(50)    not null,
-    cateCode     varchar2(30)    not null,
-    gdsPrice     number          not null,
-    gdsStock     number          null,
-    gdsDes       varchar(500)    null,
-    gdsImg       varchar(200)    null,
-    gdsDate      date            default sysdate,
-    primary key(gdsNum)  
-);
- */
+public class GoodsViewVO {
 	private int gdsNum;
 	private String gdsName;
 	private String cateCode;
@@ -24,6 +11,9 @@ public class GoodsVo {
 	private String gdsDes;
 	private String gdsImg;
 	private Date gdsDate;
+	
+	private String cateCodeRef;
+	private String cateName;
 	public int getGdsNum() {
 		return gdsNum;
 	}
@@ -72,5 +62,16 @@ public class GoodsVo {
 	public void setGdsDate(Date gdsDate) {
 		this.gdsDate = gdsDate;
 	}
-	
+	public String getCateCodeRef() {
+		return cateCodeRef;
+	}
+	public void setCateCodeRef(String cateCodeRef) {
+		this.cateCodeRef = cateCodeRef;
+	}
+	public String getCateName() {
+		return cateName;
+	}
+	public void setCateName(String cateName) {
+		this.cateName = cateName;
+	}
 }
