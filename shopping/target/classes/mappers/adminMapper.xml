@@ -26,12 +26,20 @@
 	</insert>
 	
 	<!-- 상품 목록 -->
+	<!-- 
 	<select id="goodslist" resultType = "com.shop.shopping.domain.GoodsVO">
 		SELECT gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate
 		  FROM tbl_goods
 		 ORDER BY gdsNum DESC;
 	</select>
-	
+	 -->
+	 <select id="goodslist" resultType="com.shop.shopping.domain.GoodsViewVO">
+	 	select  g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, gdsPrice, gdsStock, gdsDes, gdsImg, gdsDate, g.gdsImg, g.gdsThumbImg
+          from tbl_goods g
+         inner join goods_category c
+            on g.cateCode = c.cateCode
+	 </select>
+	 
 	<!-- 상품 조회 -->
 	<!-- 
 	<select id="goodsView" resultType = "com.shop.shopping.domain.GoodsVO">
@@ -58,6 +66,9 @@
 		      ,gdsPrice = #{gdsPrice}
 		      ,gdsStock = #{gdsStock}
 		      ,gdsDes   = #{gdsDes}
+		      
+		      ,gdsImg = #{gdsImg}
+		      ,gdsThumbImg = #{gdsThumbImg}
 		 where gdsNum   = #{gdsNum}
 	</update>
 	

@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="/resources/bootstrap/bootstrap-theme.min.css">
 	<script src="/resources/bootstrap/bootstrap.min.js"></script>
 	
+	<script src="/resources/ckeditor/ckeditor.js"></script>
+	
 	<style>
 		 body { font-family:'맑은 고딕', verdana; padding:0; margin:0; }
 		 ul { padding:0; margin:0; list-style:none;  }
@@ -87,7 +89,7 @@
 			
 			<div class="inputArea">
 				<label for="gdsPrice">상품가격</label>
-				<input type="text" id="gdsPrice" name="gdsPrice"/>
+				<input type="text" id="gdsPrice" name="gdsPrice" />
 			</div>
 			
 			<div class="inputArea">
@@ -98,6 +100,17 @@
 			<div class="inputArea">
 				<label for="gdsDes">상품소개</label>
 				<textArea rows="5" cols="50" id="gdsDes" name="gdsDes"></textArea>
+				
+				<script>
+					var ckeditor_config = {
+						resize_enabled : false,
+						enterMode : CKEDITOR.ENTER_BR,
+						shiftEnterMode : CKEDITOR.ENTER_P,
+						filebrowserUploadUrl : "/admin/goods/ckUpload"
+					};
+					
+					CKEDITOR.replace("gdsDes", ckeditor_config);
+				</script>
 			</div>
 			
 			<div class="inputArea">
@@ -197,6 +210,19 @@
 				}
 			});
 		});
+	</script>
+	
+	<script>
+		//숫자만 입력받게 하는 스크립트
+		var regExp = /[^0-9]/gi;
+		
+		$("#gdsPrice").keyup(function(){ numCheck($(this)); });
+		$("#gdsStock").keyup(function(){ numCheck($(this)); });
+		
+		function numCheck(selector){
+			var tempVal = selector.val();
+			selector.val(tempVal.replace(regExp, ""));
+		}
 	</script>
 </div>
 </body>
