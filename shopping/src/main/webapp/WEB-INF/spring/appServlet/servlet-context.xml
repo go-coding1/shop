@@ -23,6 +23,18 @@
 	
 	<context:component-scan base-package="com.shop.shopping" />
 	
+	<!-- 업로드 패스 설정 --> 
+	<beans:bean class="java.lang.String" id="uploadPath">
+ 		<beans:constructor-arg value="D:\board\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\shopping\resources" />
+	</beans:bean>
+
+	<!-- 일반 파일 업로드 경로 -->
+	<resources mapping="/imgUpload/**" location="/resources/imgUpload/" />
+
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+ 		<beans:property name="maxUploadSize" value="10485760"/>
+	</beans:bean>
+	
 	<beans:bean id="AdminInterceptor" class="com.shop.shopping.Interceptor.AdminInterceptor"/>
 
 	<interceptors>

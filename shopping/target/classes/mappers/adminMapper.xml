@@ -21,8 +21,8 @@
 	
 	<!-- 상품등록 -->
 	<insert id="register">
-		insert into tbl_goods (gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes)
-		values (NEXTVAL(tbl_goods_seq), #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes})
+		insert into tbl_goods (gdsNum, gdsName, cateCode, gdsPrice, gdsStock, gdsDes, gdsImg, gdsThumbImg)
+		values (NEXTVAL(tbl_goods_seq), #{gdsName}, #{cateCode}, #{gdsPrice}, #{gdsStock}, #{gdsDes}, #{gdsImg}, #{gdsThumbImg})
 	</insert>
 	
 	<!-- 상품 목록 -->
@@ -43,7 +43,7 @@
 	 
 	<!-- 상품 조회 + 카테고리 조인 -->
 	<select id="goodsView" resultType="com.shop.shopping.domain.GoodsViewVO">
-		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, g.gdsPrice, g.gdsStock, g.gdsDate, g.gdsImg, g.gdsDes
+		SELECT g.gdsNum, g.gdsName, g.cateCode, c.cateCodeRef, c.cateName, g.gdsPrice, g.gdsStock, g.gdsDate, g.gdsImg, g.gdsDes, g.gdsImg, g.gdsThumbImg
 			FROM tbl_goods g
 			INNER JOIN goods_category c
 			ON g.cateCode = c.cateCode
