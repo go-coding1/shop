@@ -83,4 +83,17 @@
 		 where cartNum = #{cartNum}
 		   and userId = #{userId} 
 	</delete>
+	
+	<!-- 주문 정보 저장-->
+	<insert id="orderInfo">
+		insert into tbl_order(orderId, userId, orderRec, userAddr1, userAddr2, userAddr3, orderPhon, amount)
+		values(#{orderId}, #{userId}, #{orderRec}, #{userAddr1}, #{userAddr2}, #{userAddr3}, #{orderPhon}, #{amount})
+	</insert>
+	
+	<!-- 주문 상세 정보 저장 -->
+	<insert id="orderInfo_Details">
+		insert into tbl_order_details(orderDetailsNum, orderId, gdsNum, cartStock)
+		select nextval(tbl_order_details_seq), #{orderId}, gdsNum, cartStock
+		from tbl_cart
+	</insert>
  </mapper>

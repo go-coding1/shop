@@ -5,6 +5,8 @@ import java.util.List;
 import com.shop.shopping.domain.CartListVO;
 import com.shop.shopping.domain.CartVO;
 import com.shop.shopping.domain.GoodsViewVO;
+import com.shop.shopping.domain.OrderDetailVO;
+import com.shop.shopping.domain.OrderVO;
 import com.shop.shopping.domain.ReplyListVO;
 import com.shop.shopping.domain.ReplyVO;
 
@@ -39,4 +41,10 @@ public interface ShopService {
 	
 	//카트 삭제
 	public void deleteCart(CartVO cart) throws Exception;
+	
+	//주문 정보
+	public void orderInfo(OrderVO order) throws Exception;
+	
+	//주문 상세 정보
+	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
 }

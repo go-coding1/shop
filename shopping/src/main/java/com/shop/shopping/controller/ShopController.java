@@ -1,5 +1,7 @@
 package com.shop.shopping.controller;
 
+import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,8 @@ import com.shop.shopping.domain.CartListVO;
 import com.shop.shopping.domain.CartVO;
 import com.shop.shopping.domain.GoodsViewVO;
 import com.shop.shopping.domain.MemberVO;
+import com.shop.shopping.domain.OrderDetailVO;
+import com.shop.shopping.domain.OrderVO;
 import com.shop.shopping.domain.ReplyListVO;
 import com.shop.shopping.domain.ReplyVO;
 import com.shop.shopping.service.ShopService;
@@ -192,5 +195,36 @@ public class ShopController {
 			  result = 1;
 		 }  
 		 return result;
+	}
+	
+	//주문
+	@RequestMapping(value = "/cartList", method = RequestMethod.POST)
+	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail) throws Exception{
+		logger.info("order");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		String userId = member.getUserId();
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
+		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+		
+		for(int i=1;i<=6;i++) {
+			subNum += (int)(Math.random()*10);
+		}
+		
+		String orderId = ymd + "_" + subNum;
+		
+		order.setOrderId(orderId);
+		order.setUserId(userId);
+		
+		service.orderInfo(order);
+		
+		orderDetail.setOrderId(orderId);
+		service.orderInfo_Details(orderDetail);
+		
+		return "redirect:/shop/orderList";
 	}
 }

@@ -81,6 +81,22 @@
 		
 		 .checkBox { float:left; width:30px; }
 		 .checkBox input { width:16px; height:16px; }
+		 
+		 .listResult { padding:20px; background:#eee; }
+		 .listResult .sum { float:left; width:45%; font-size:22px; }
+		
+		 .listResult .orderOpne { float:right; width:45%; text-align:right; }
+		 .listResult .orderOpne button { font-size:18px; padding:5px 10px; border:1px solid #999; background:#fff;}
+		 .listResult::after { content:""; display:block; clear:both; }
+		 
+		 .orderInfo { border:5px solid #eee; padding:20px; display:none; }
+		 .orderInfo .inputArea { margin:10px 0; }
+		 .orderInfo .inputArea label { display:inline-block; width:120px; margin-right:10px; }
+		 .orderInfo .inputArea input { font-size:14px; padding:5px; }
+		 #userAddr2, #userAddr3 { width:250px; }
+		
+		 .orderInfo .inputArea:last-child { margin-top:30px; }
+		 .orderInfo .inputArea button { font-size:20px; border:2px solid #ccc; padding:5px 10px; background:#fff; margin-right:20px;}
 	</style>
 </head>
 <body>
@@ -151,6 +167,8 @@
 						</div>
 					</li>
 					
+					<c:set var="sum" value="0"/>
+					
 					<c:forEach items="${cartList }" var = "cartList">
 					<li>
 						<div class="checkBox">
@@ -207,8 +225,66 @@
 							</div>
 						</div>
 					</li>
+					<c:set var="sum" value="${sum + (cartList.gdsPrice * cartList.cartStock)}" />
 					</c:forEach>
+		
 				</ul>
+				<div class="listResult">
+					<div class="sum">
+						총 합계 : <fmt:formatNumber pattern="###,###,###" value="${sum}" />원
+					</div>
+					<div class="orderOpne">
+						<button type="button" class="orderOpne_bnt">주문 정보 입력</button>
+						<script>
+							$(".orderOpne_bnt").click(function(){
+								 $(".orderInfo").slideDown();
+								 $(".orderOpne_bnt").slideUp();
+							});
+						</script>
+					</div>
+				</div>
+				
+				<div class="orderInfo">
+					<form role="form" method = "post" autocomplete="off">
+						<input type="hidden" name="amount" value="${sum }" />
+						
+						<div class="inputArea">
+							<label for="">수령인</label>
+							<input type="text" name="orderRec" id="orderRec" required="required"/>
+						</div>
+						
+						<div class="inputArea">
+							<label for="orderPhon">수령인 연락처</label>
+							<input type="text" name="orderPhon" id="orderPhon" required="required"/>
+						</div>
+						
+						<div class="inputArea">
+							<label for="userAddr1">우편번호</label>
+							<input type="text" name="userAddr1" id="userAddr1" required="required"/>
+						</div>
+						
+						<div class="inputArea">
+							<label for="userAddr2">1차 주소</label>
+							<input type="text" name="userAddr2" id="userAddr2" required="required"/>
+						</div>
+						
+						<div class="inputArea">
+							<label for="userAddr3">2차 주소</label>
+							<input type="text" name="userAddr3" id="userAddr3" required="required"/>
+						</div>
+						
+						<div class="inputArea">
+							<button type="submit" class="order_btn">주문</button>
+							<button type="button" class="cancel_btn">취소</button>
+							<script>
+							$(".cancel_btn").click(function(){
+								$(".orderInfo").slideUp();
+								$(".orderOpne_bnt").slideDown();
+							});
+						</script>
+						</div>
+					</form>
+				</div>
 			</section>
 			
 			<aside id="aside">

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import com.shop.shopping.domain.CartListVO;
 import com.shop.shopping.domain.CartVO;
 import com.shop.shopping.domain.GoodsViewVO;
+import com.shop.shopping.domain.OrderDetailVO;
+import com.shop.shopping.domain.OrderVO;
 import com.shop.shopping.domain.ReplyListVO;
 import com.shop.shopping.domain.ReplyVO;
 
@@ -94,6 +96,18 @@ public class ShopDAOImpl implements ShopDAO {
 		// TODO Auto-generated method stub
 		sql.delete(namespace+".deleteCart", cart);
 		
+	}
+
+	@Override
+	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception {
+		// TODO Auto-generated method stub
+		sql.insert(namespace + ".orderInfo_Details", orderDetail);
+	}
+
+	@Override
+	public void orderInfo(OrderVO order) throws Exception {
+		// TODO Auto-generated method stub
+		sql.insert(namespace+".orderInfo", order);
 	}
 	
 	

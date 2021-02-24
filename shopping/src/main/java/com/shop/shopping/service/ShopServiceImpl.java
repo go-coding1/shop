@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.shop.shopping.domain.CartListVO;
 import com.shop.shopping.domain.CartVO;
 import com.shop.shopping.domain.GoodsViewVO;
+import com.shop.shopping.domain.OrderDetailVO;
+import com.shop.shopping.domain.OrderVO;
 import com.shop.shopping.domain.ReplyListVO;
 import com.shop.shopping.domain.ReplyVO;
 import com.shop.shopping.persistence.ShopDAO;
@@ -85,6 +87,18 @@ public class ShopServiceImpl implements ShopService {
 	public void deleteCart(CartVO cart) throws Exception {
 		// TODO Auto-generated method stub
 		dao.deleteCart(cart);
+	}
+
+	@Override
+	public void orderInfo(OrderVO order) throws Exception {
+		// TODO Auto-generated method stub
+		dao.orderInfo(order);
+	}
+
+	@Override
+	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception {
+		// TODO Auto-generated method stub
+		dao.orderInfo_Details(orderDetail);
 	}
 
 }
