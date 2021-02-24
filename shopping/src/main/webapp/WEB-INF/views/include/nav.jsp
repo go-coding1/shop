@@ -18,6 +18,9 @@
 	<c:if test="${member != null }">
 		<li>${member.userName }님 환영합니다.</li>
 		<li>
+			<a href="/shop/cartList">카트 리스트</a>
+		</li>
+		<li>
 			<a href="/member/signout">로그아웃</a>
 		</li>
 	</c:if>

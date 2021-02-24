@@ -22,5 +22,65 @@
 		on g.cateCode = c.cateCode
 		where g.cateCode = #{cateCode}
 	</select>
-	 
+	
+	<!-- 상품 소감(댓글) 작성 -->
+	<insert id="registerReply">
+		insert into tbl_reply (gdsNum, userId, repNum, repCon)
+		values (#{gdsNum}, #{userId}, nextval(tbl_reply_seq), #{repCon} )
+	</insert>	
+	
+	<!-- 상품 소감(댓글) 리스트 -->
+	<select id="replyList" resultType ="com.shop.shopping.domain.ReplyListVO">
+		select r.gdsNum, r.userId, r.repNum, r.repCon, r.repDate, m.userName
+		  from tbl_reply r
+		 inner join tbl_member m
+		    on r.userId = m.userId
+		 where gdsNum = #{gdsNum} 
+	</select>
+	
+	<!-- 상품 소감(댓글) 삭제 -->
+	<delete id="deleteReply">
+		delete from tbl_reply
+		where repNum = #{repNum}
+		 and userId = #{userId}
+	</delete>
+
+	<!-- 아이디 체크 -->
+	<select id="replyUserIdCheck" resultType="String">
+		select userId
+			from tbl_reply
+	  	  where repNum = #{repNum}
+	</select>
+		
+	<!-- 상품 소감(댓글) 수정 -->
+	<update id="modifyReply">
+		update tbl_reply
+		set repCon = #{repCon}
+		where repNum = #{repNum}
+		and userId = #{userId}
+	</update>
+	
+	<!-- 카트 담기 -->
+	<insert id="addCart">
+		insert into tbl_cart ( cartNum, userId, gdsNum, cartStock)
+		values(nextval(tbl_cart_seq), #{userId}, #{gdsNum}, #{cartStock})
+	</insert>
+	
+	<!-- 카트 리스트 -->
+	<select id="cartList" resultType="com.shop.shopping.domain.CartListVO">
+		SELECT row_number() over(ORDER BY c.cartNum DESC) AS num,
+			   c.cartNum, c.userId, c.gdsNum, c.cartStock, c.addDate, g.gdsName,
+			   g.gdsPrice, g.gdsThumbImg
+  		  FROM tbl_cart c
+  		 INNER JOIN tbl_goods g
+    		ON c.gdsNum = g.gdsNum
+ 		 WHERE c.userId = #{userId}
+	</select>
+	
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart">
+		delete from tbl_cart
+		 where cartNum = #{cartNum}
+		   and userId = #{userId} 
+	</delete>
  </mapper>
