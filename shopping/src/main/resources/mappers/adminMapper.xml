@@ -111,5 +111,20 @@
 		   set gdsStock = gdsStock - #{gdsStock}
 		 where gdsNum = #{gdsNum}
 	</update>
+	
+	<!-- 모든 소감(댓글) -->
+	<select id="allReply" resultType="com.shop.shopping.domain.ReplyListVO">
+		SELECT r.gdsNum, r.userId, r.repNum, r.repCon, r.repDate,
+		 	   m.userName
+		  FROM tbl_reply r
+		 INNER JOIN tbl_member m
+		    ON r.userId = m.userId;
+	</select>
+	
+	<!-- 소감(댓글) 지우기 -->
+	<delete id="deleteReply">
+		delete from tbl_reply
+		 where repNum = #{repNum}
+	</delete>
  </mapper>
  

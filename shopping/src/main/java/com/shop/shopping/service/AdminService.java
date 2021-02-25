@@ -7,6 +7,7 @@ import com.shop.shopping.domain.GoodsVO;
 import com.shop.shopping.domain.GoodsViewVO;
 import com.shop.shopping.domain.OrderListVO;
 import com.shop.shopping.domain.OrderVO;
+import com.shop.shopping.domain.ReplyListVO;
 
 public interface AdminService {
 	
@@ -39,4 +40,10 @@ public interface AdminService {
 	
 	//상품 수량 조절
 	public void changeStock(GoodsVO goods) throws Exception;
+	
+	// 모든 소감(댓글)
+	public List<ReplyListVO> allReply() throws Exception;
+	
+	// 소감(댓글) 삭제
+	public void deleteReply(int repNum) throws Exception;
 }
