@@ -31,6 +31,8 @@ public class OrderListVO {
 	private String gdsName;
 	private String gdsThumbImg;
 	private int gdsPrice;
+	
+	private String delivery;
 	public String getOrderId() {
 		return orderId;
 	}
@@ -120,6 +122,12 @@ public class OrderListVO {
 	}
 	public void setGdsPrice(int gdsPrice) {
 		this.gdsPrice = gdsPrice;
+	}
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
 	}
 	
 	

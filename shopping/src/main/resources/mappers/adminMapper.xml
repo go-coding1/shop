@@ -77,5 +77,32 @@
 		delete from tbl_goods
 		where gdsNum = #{gdsNum}
 	</delete>
+	
+	<!-- 모든 유저의 주문 목록 -->
+	<select id="orderList" resultType="com.shop.shopping.domain.OrderVO">
+		SELECT orderId, userId, orderRec, userAddr1, userAddr2, userAddr3, orderPhon, amount, orderDate, delivery
+  		  FROM tbl_order
+	</select>
+	
+	<!--  특정 주문 목록 -->
+	<select id="orderView" resultType="com.shop.shopping.domain.OrderListVO">
+		SELECT o.orderId, o.userId, o.orderRec, o.userAddr1, o.userAddr2, o.userAddr3, o.orderPhon, o.amount, o.orderDate, o.delivery,
+			 d.orderDetailsNum, d.gdsNum, d.cartStock,
+			 g.gdsName, g.gdsThumbImg, g.gdsPrice
+		FROM tbl_order o
+       INNER JOIN tbl_order_details d
+		  ON o.orderid = d.orderId
+	   INNER JOIN tbl_goods g
+		  ON d.gdsNum = g.gdsNum
+	   WHERE o.orderId = #{orderId}
+	</select>
+	
+	<!-- 배송 상태 -->
+	<update id="delivery">
+		update tbl_order
+		   set delivery = #{delivery}
+		 where orderId = #{orderId} 
+		 
+	</update>
  </mapper>
  

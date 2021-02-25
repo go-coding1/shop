@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import com.shop.shopping.domain.CategoryVO;
 import com.shop.shopping.domain.GoodsVO;
 import com.shop.shopping.domain.GoodsViewVO;
+import com.shop.shopping.domain.OrderListVO;
+import com.shop.shopping.domain.OrderVO;
 
 @Repository	
 public class AdminDAOImpl implements AdminDAO {
@@ -55,6 +57,24 @@ public class AdminDAOImpl implements AdminDAO {
 	public void goodsDelete(int gdsNum) throws Exception {
 		// TODO Auto-generated method stub
 		sql.delete(namespace +".goodsDelete",gdsNum);
+	}
+
+	@Override
+	public List<OrderVO> orderList() throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectList(namespace + ".orderList" );
+	}
+
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectList(namespace + ".orderView", order);
+	}
+
+	@Override
+	public void delivery(OrderVO order) throws Exception {
+		// TODO Auto-generated method stub
+		sql.update(namespace + ".delivery", order);
 	}
 
 }

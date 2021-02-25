@@ -105,14 +105,14 @@
 	
 	<!-- 특정 유저의 주문 목록 -->
 	<select id="orderList" resultType="com.shop.shopping.domain.OrderVO">
-		select orderId, userId, orderRec, userAddr1, userAddr2, userAddr3, orderPhon, amount, orderDate
+		select orderId, userId, orderRec, userAddr1, userAddr2, userAddr3, orderPhon, amount, orderDate, delivery
 		from tbl_order
 		where userId = #{userId}
 	</select>
 	
 	<!-- 특정 주문 목록 -->
 	<select id="orderView" resultType="com.shop.shopping.domain.OrderListVO">
-	SELECT o.orderId, o.userId, o.orderRec, o.userAddr1, o.userAddr2, o.userAddr3, o.orderPhon, o.amount, o.orderDate,
+	SELECT o.orderId, o.userId, o.orderRec, o.userAddr1, o.userAddr2, o.userAddr3, o.orderPhon, o.amount, o.orderDate, o.delivery
 			 d.orderDetailsNum, d.gdsNum, d.cartStock,
 			 g.gdsName, g.gdsThumbImg, g.gdsPrice
 	  FROM tbl_order o
@@ -123,4 +123,5 @@
 	 WHERE o.userId = #{userId}
 	   AND o.orderId = #{orderId}
 	</select>
+	
  </mapper>
