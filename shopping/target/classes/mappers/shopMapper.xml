@@ -96,4 +96,10 @@
 		select nextval(tbl_order_details_seq), #{orderId}, gdsNum, cartStock
 		from tbl_cart
 	</insert>
+	
+	<!-- 주문 확인 후 카트 비우기 -->
+	<delete id="cartAllDelete">
+		delete from tbl_cart
+		where userId = #{userId}
+	</delete>
  </mapper>

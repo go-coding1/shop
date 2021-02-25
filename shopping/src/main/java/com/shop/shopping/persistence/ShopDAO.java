@@ -50,4 +50,7 @@ public interface ShopDAO {
 	
 	//주문 상세 정보
 	public void orderInfo_Details(OrderDetailVO orderDetail) throws Exception;
+	
+	//카트 비우기
+	public void cartAllDelete(String userId) throws Exception;
 }

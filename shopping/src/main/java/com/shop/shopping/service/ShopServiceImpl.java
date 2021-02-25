@@ -101,4 +101,10 @@ public class ShopServiceImpl implements ShopService {
 		dao.orderInfo_Details(orderDetail);
 	}
 
+	@Override
+	public void cartAllDelete(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		dao.cartAllDelete(userId);
+	}
+
 }

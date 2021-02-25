@@ -109,6 +109,12 @@ public class ShopDAOImpl implements ShopDAO {
 		// TODO Auto-generated method stub
 		sql.insert(namespace+".orderInfo", order);
 	}
+
+	@Override
+	public void cartAllDelete(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		sql.delete(namespace + ".cartAllDelete", userId);
+	}
 	
 	
 }

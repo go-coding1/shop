@@ -225,6 +225,8 @@ public class ShopController {
 		orderDetail.setOrderId(orderId);
 		service.orderInfo_Details(orderDetail);
 		
+		service.cartAllDelete(userId);
+		
 		return "redirect:/shop/orderList";
 	}
 }
