@@ -77,4 +77,10 @@ public class AdminDAOImpl implements AdminDAO {
 		sql.update(namespace + ".delivery", order);
 	}
 
+	@Override
+	public void changeStock(GoodsVO goods) throws Exception {
+		// TODO Auto-generated method stub
+		sql.update(namespace + ".changeStock", goods);
+	}
+
 }

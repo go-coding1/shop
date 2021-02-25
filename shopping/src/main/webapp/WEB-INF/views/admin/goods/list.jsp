@@ -81,6 +81,7 @@
 			<table>
 				<thead>
 					<tr>
+						<th>썸네일</th>
 						<th>번호</th>
 						<th>이름</th>
 						<th>카테고리</th>

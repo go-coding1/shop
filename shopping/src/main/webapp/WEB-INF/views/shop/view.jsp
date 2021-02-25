@@ -287,6 +287,8 @@ footer#footer div#footer_box {
 								EA
 							</p>
 
+							<c:if test="${view.gdsStock != 0}">
+
 							<p class="cartStock">
 								<span>구입 수량</span> 
 								<button type="button" class="plus">+</button>
@@ -298,7 +300,7 @@ footer#footer div#footer_box {
 										var num = $(".numBox").val();
 										var plusNum = Number(num) +1;
 										
-										if(plusNum >= ${view.gdsStock} ){
+										if(plusNum > ${view.gdsStock} ){
 											$(".numBox").val(num);
 										} else {
 											$(".numBox").val(plusNum);
@@ -316,6 +318,10 @@ footer#footer div#footer_box {
 									});
 								</script>
 							</p>
+							</c:if>
+							<c:if test="${view.gdsStock == 0}">
+								<p>상품 수량이 부족합니다.</p>
+							</c:if>
 
 							<p class="addToCart">
 								<button type="button" class="addCart_btn">카트에 담기</button>

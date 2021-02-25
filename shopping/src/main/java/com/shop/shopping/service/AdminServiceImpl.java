@@ -73,4 +73,10 @@ public class AdminServiceImpl implements AdminService {
 		dao.delivery(order);
 	}
 
+	@Override
+	public void changeStock(GoodsVO goods) throws Exception {
+		// TODO Auto-generated method stub
+		dao.changeStock(goods);
+	}
+
 }
