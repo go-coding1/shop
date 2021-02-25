@@ -21,6 +21,7 @@ import com.shop.shopping.domain.CartVO;
 import com.shop.shopping.domain.GoodsViewVO;
 import com.shop.shopping.domain.MemberVO;
 import com.shop.shopping.domain.OrderDetailVO;
+import com.shop.shopping.domain.OrderListVO;
 import com.shop.shopping.domain.OrderVO;
 import com.shop.shopping.domain.ReplyListVO;
 import com.shop.shopping.domain.ReplyVO;
@@ -228,5 +229,36 @@ public class ShopController {
 		service.cartAllDelete(userId);
 		
 		return "redirect:/shop/orderList";
+	}
+	
+	//주문 목록
+	@RequestMapping(value= "/orderList", method = RequestMethod.GET)
+	public void getOrderList(HttpSession session, Model model, OrderVO order) throws Exception{
+		logger.info("get order list");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		String userId = member.getUserId();
+		
+		order.setUserId(userId);
+		
+		List<OrderVO> orderList = service.orderList(order);
+		
+		model.addAttribute("orderList", orderList);
+	}
+	
+	//주문 상세 목록
+	@RequestMapping(value = "/orderView" , method = RequestMethod.GET)
+	public void getOrderList(HttpSession session, @RequestParam("n") String orderId, OrderVO order, Model model) throws Exception{
+		logger.info("get order view");
+		
+		MemberVO member = (MemberVO)session.getAttribute("member");
+		String userId = member.getUserId();
+		
+		order.setUserId(userId);
+		order.setOrderId(orderId);
+		
+		List<OrderListVO> orderView = service.orderView(order);
+		
+		model.addAttribute("orderView", orderView);
 	}
 }

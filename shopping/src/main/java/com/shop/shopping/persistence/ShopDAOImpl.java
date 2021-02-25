@@ -12,6 +12,7 @@ import com.shop.shopping.domain.CartListVO;
 import com.shop.shopping.domain.CartVO;
 import com.shop.shopping.domain.GoodsViewVO;
 import com.shop.shopping.domain.OrderDetailVO;
+import com.shop.shopping.domain.OrderListVO;
 import com.shop.shopping.domain.OrderVO;
 import com.shop.shopping.domain.ReplyListVO;
 import com.shop.shopping.domain.ReplyVO;
@@ -114,6 +115,18 @@ public class ShopDAOImpl implements ShopDAO {
 	public void cartAllDelete(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		sql.delete(namespace + ".cartAllDelete", userId);
+	}
+
+	@Override
+	public List<OrderVO> orderList(OrderVO order) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectList(namespace + ".orderList", order);
+	}
+
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectList(namespace + ".orderView", order);
 	}
 	
 	

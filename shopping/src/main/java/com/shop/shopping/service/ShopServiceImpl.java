@@ -10,6 +10,7 @@ import com.shop.shopping.domain.CartListVO;
 import com.shop.shopping.domain.CartVO;
 import com.shop.shopping.domain.GoodsViewVO;
 import com.shop.shopping.domain.OrderDetailVO;
+import com.shop.shopping.domain.OrderListVO;
 import com.shop.shopping.domain.OrderVO;
 import com.shop.shopping.domain.ReplyListVO;
 import com.shop.shopping.domain.ReplyVO;
@@ -105,6 +106,18 @@ public class ShopServiceImpl implements ShopService {
 	public void cartAllDelete(String userId) throws Exception {
 		// TODO Auto-generated method stub
 		dao.cartAllDelete(userId);
+	}
+
+	@Override
+	public List<OrderVO> orderList(OrderVO order) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.orderList(order);
+	}
+
+	@Override
+	public List<OrderListVO> orderView(OrderVO order) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.orderView(order);
 	}
 
 }
