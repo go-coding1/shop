@@ -9,6 +9,8 @@
 <title>SHOP</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+<link rel="stylesheet" href="/resources/css/user/shop/default/css" />
+
 <script>
 function replyList() {
  	var gdsNum = ${view.gdsNum}
